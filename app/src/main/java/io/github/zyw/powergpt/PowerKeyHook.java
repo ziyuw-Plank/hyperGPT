@@ -15,7 +15,7 @@ import de.robv.android.xposed.XposedHelpers;
  * 只替换「启动小爱」这一个动作，不碰按键事件本身。
  *
  * HyperOS 1.0 / 2.0 / 3.0（Android 14 / 15 / 16）的 miui-services.jar 中，长按电源键的调用链为
- * （均已对官方 ROM 反编译核实，见 README_zh.md「原理」一节）：
+ * （均已对官方 ROM 反编译核实，见 README.md「原理」一节）：
  *
  *   PhoneWindowManager 单键手势检测 (SingleKeyGestureDetector)
  *     └─ com.android.server.input.shortcut.singlekeyrule.PowerKeyRule#onMiuiLongPress
