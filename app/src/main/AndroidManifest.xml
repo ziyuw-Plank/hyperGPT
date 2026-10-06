@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  纯 LSPosed（legacy Xposed API）模块：
+  - 无 Activity / Service / 权限 / 网络；APK 本身什么也不运行，代码只在 system_server 中由 LSPosed 加载。
+  - 入口类写在 assets/xposed_init。
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="false"
+        android:icon="@android:drawable/sym_def_app_icon"
+        android:label="@string/app_name"
+        android:description="@string/xposed_description">
+
+        <!-- 声明为 Xposed 模块 -->
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <!-- 模块描述（LSPosed 管理器中显示） -->
+        <meta-data
+            android:name="xposeddescription"
+            android:value="@string/xposed_description" />
+        <!-- 需要的最低 Xposed API 版本（LSPosed 实现 API 93） -->
+        <meta-data
+            android:name="xposedminversion"
+            android:value="93" />
+        <!-- 推荐作用域：仅系统框架 (android) -->
+        <meta-data
+            android:name="xposedscope"
+            android:resource="@array/xposed_scope" />
+    </application>
+</manifest>

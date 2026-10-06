@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      LSPosed 推荐作用域（legacy Xposed API 的 xposedscope 元数据）。
+      "android" = LSPosed 管理器里的「系统框架 / System Framework」，即 system_server。
+      本模块只需要也只允许这一项。
+    -->
+    <string-array name="xposed_scope">
+        <item>android</item>
+    </string-array>
+</resources>

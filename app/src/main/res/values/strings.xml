@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HyperOS 电源键 → ChatGPT</string>
+    <string name="xposed_description">长按电源键唤起 ChatGPT 语音（替代小爱同学）。作用域仅限「系统框架」。不修改任何分区。</string>
+</resources>

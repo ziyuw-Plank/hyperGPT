@@ -1,0 +1,13 @@
+.gradle/
+build/
+build-raw/
+app/build/
+out/
+local.properties
+_research/
+libs/
+keystore/
+keystore.properties
+*.jks
+*.keystore
+*.apk
