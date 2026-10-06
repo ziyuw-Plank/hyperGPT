@@ -22,7 +22,8 @@
 ## 1. 安装
 
 1. 从 [Releases](https://github.com/ziyuw-Plank/hyperGPT/releases/latest) 下载 APK 安装（自签名；直接点开安装或 `adb install`）。
-2. 打开 LSPosed 管理器 → 模块 → 启用 **「HyperOS 电源键 → ChatGPT」**。
+   包名为 `io.github.ziyuw_plank.hypergpt`。如果装过早期测试版（包名 `io.github.zyw.powergpt`），请先在 LSPosed 中停用并卸载旧版，再安装新版。
+2. 打开 LSPosed 管理器 → 模块 → 启用 **「hyperGPT」**。
 3. 作用域 **只勾选「系统框架 / System Framework」**（模块已声明推荐作用域，启用时会自动勾上）。
    **不要**勾选小爱、ChatGPT、设置或其它任何 App——本模块不需要，而且即使勾了，代码也会立即返回不做任何事。
 4. **重启手机**（system_server 的 Hook 必须重启才生效，「软重启」也可以）。
@@ -174,7 +175,7 @@ PowerKeyRule
 ## 7. 遵循的 LSPosed 开发规范
 
 - **Legacy Xposed API**（`de.robv.android.xposed:api:82`，来自 https://api.xposed.info/），`compileOnly`，**不打包进 APK**（已用 dexdump 确认 APK 里只有本模块的类）。
-- 入口：`assets/xposed_init` → `io.github.zyw.powergpt.MainHook`（实现 `IXposedHookLoadPackage`）。
+- 入口：`assets/xposed_init` → `io.github.ziyuw_plank.hypergpt.MainHook`（实现 `IXposedHookLoadPackage`）。
 - `AndroidManifest.xml` meta-data：`xposedmodule=true`、`xposeddescription`、`xposedminversion=93`、`xposedscope=@array/xposed_scope`。
 - 作用域：`res/values/arrays.xml` 中 `xposed_scope` **只有一项 `android`**（legacy API 中「系统框架」的写法）。
   若改用 modern libxposed API，则应改为 `META-INF/xposed/scope.list` 写 `system`——本模块用的是 legacy API，所以不需要 scope.list。
@@ -190,9 +191,9 @@ PowerKeyRule
 - 已核对：HyperOS 1.0 (A14)、2.0 (A15)、3.0 (A16) 国行 ROM 的方法名和签名完全一致
   （`launchVoiceAssistant(String,Bundle)Z`、`triggerFunction` 4/5 参、`mContext:Context`）。其它小版本/机型（尤其平板、折叠屏、
   定制 ROM）理论上相同，但未逐一验证。
-- **未在真机上运行过**；在真机上可能的不确定点：ChatGPT 的 `AssistantActivity` 能否在锁屏上直接显示（大概率不能，所以默认先弹解锁界面）；
+- 已在真机上测试可用，但未覆盖所有机型；ChatGPT 的 `AssistantActivity` 一般不能直接显示在锁屏上，所以默认先弹解锁界面；
   ChatGPT 以后改了 Activity 名时会自动回退小爱，需要更新模块里的组件名。
-- 息屏状态下长按电源键：系统会先亮屏并进入锁屏，按上面的锁屏逻辑处理（默认弹解锁界面）；具体表现未经真机验证。
+- 息屏状态下长按电源键：系统会先亮屏并进入锁屏，按上面的锁屏逻辑处理（默认弹解锁界面）。
 - 小爱的「按住说话、松手结束」语义不会传给 ChatGPT（ChatGPT 语音界面自己管理会话）；松手不会关闭 ChatGPT。
 - 继续按住到 3 秒会弹出关机菜单（原版行为，刻意保留）。
 - 儿童空间、开机向导未完成、系统未就绪时，系统自己就不会触发（检查在 Hook 点之前）。

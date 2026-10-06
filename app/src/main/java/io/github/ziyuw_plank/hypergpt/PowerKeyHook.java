@@ -1,4 +1,4 @@
-package io.github.zyw.powergpt;
+package io.github.ziyuw_plank.hypergpt;
 
 import android.content.Context;
 import android.os.Bundle;

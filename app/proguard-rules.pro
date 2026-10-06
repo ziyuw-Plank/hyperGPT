@@ -1,5 +1,5 @@
 # LSPosed 通过 assets/xposed_init 按类名反射加载入口类，必须保留类名与无参构造。
--keep class io.github.zyw.powergpt.MainHook { <init>(); *; }
+-keep class io.github.ziyuw_plank.hypergpt.MainHook { <init>(); *; }
 # 保留实现的 Xposed 接口方法签名
 -keep class * implements de.robv.android.xposed.IXposedHookLoadPackage {
     public void handleLoadPackage(de.robv.android.xposed.callbacks.XC_LoadPackage$LoadPackageParam);

@@ -26,7 +26,7 @@ if [ ! -f "$XPOSED_API" ]; then
 fi
 
 # 1) 资源（Gradle 用 namespace，这里给 aapt2 生成一份带 package 属性的清单副本）
-sed 's#<manifest xmlns:android="http://schemas.android.com/apk/res/android">#<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="io.github.zyw.powergpt">#' \
+sed 's#<manifest xmlns:android="http://schemas.android.com/apk/res/android">#<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="io.github.ziyuw_plank.hypergpt">#' \
   app/src/main/AndroidManifest.xml > "$B/AndroidManifest.xml"
 "$BT/aapt2" compile --dir app/src/main/res -o "$B/res/res.zip"
 "$BT/aapt2" link -o "$B/base.apk" -I "$PLATFORM" \
@@ -52,11 +52,11 @@ python3 -c 'import sys,zipfile; z=zipfile.ZipFile(sys.argv[1],"a",zipfile.ZIP_DE
 "$BT/zipalign" -f -p 4 "$B/unsigned.apk" "$B/aligned.apk"
 if [ ! -f "$KS_PROPS" ]; then
   mkdir -p keystore
-  PASS="$(head -c 24 /dev/urandom | base64 | tr -dc 'A-Za-z0-9')"
-  keytool -genkeypair -keystore keystore/powergpt.jks -storepass "$PASS" -keypass "$PASS" \
-    -alias powergpt -keyalg RSA -keysize 2048 -validity 10000 \
-    -dname "CN=HyperOS PowerGPT (self-signed)" >/dev/null
-  printf 'storeFile=keystore/powergpt.jks\nstorePassword=%s\nkeyAlias=powergpt\nkeyPassword=%s\n' "$PASS" "$PASS" > "$KS_PROPS"
+  PASS="$(head -c 48 /dev/urandom | base64 | tr -dc 'A-Za-z0-9' | head -c 32)"
+  keytool -genkeypair -keystore keystore/hypergpt-release.jks -storetype PKCS12 -storepass "$PASS" -keypass "$PASS" \
+    -alias hypergpt -keyalg RSA -keysize 4096 -validity 10000 \
+    -dname "CN=ziyuw-Plank" >/dev/null
+  printf 'storeFile=keystore/hypergpt-release.jks\nstorePassword=%s\nkeyAlias=hypergpt\nkeyPassword=%s\n' "$PASS" "$PASS" > "$KS_PROPS"
   chmod 600 "$KS_PROPS"
 fi
 prop() { grep -m1 "^$1=" "$KS_PROPS" | cut -d= -f2-; }

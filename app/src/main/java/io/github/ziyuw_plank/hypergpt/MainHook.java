@@ -1,4 +1,4 @@
-package io.github.zyw.powergpt;
+package io.github.ziyuw_plank.hypergpt;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

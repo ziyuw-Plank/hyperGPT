@@ -1,4 +1,4 @@
-package io.github.zyw.powergpt;
+package io.github.ziyuw_plank.hypergpt;
 
 import android.app.KeyguardManager;
 import android.content.ComponentName;

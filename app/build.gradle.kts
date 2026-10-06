@@ -13,11 +13,11 @@ val ksProps = Properties().apply {
 val hasKs = ksProps.getProperty("storeFile")?.let { rootProject.file(it).exists() } == true
 
 android {
-    namespace = "io.github.zyw.powergpt"
+    namespace = "io.github.ziyuw_plank.hypergpt"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "io.github.zyw.powergpt"
+        applicationId = "io.github.ziyuw_plank.hypergpt"
         minSdk = 34          // Android 14（HyperOS 1.x）起
         targetSdk = 36
         versionCode = 1
