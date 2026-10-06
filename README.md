@@ -1,4 +1,10 @@
-# HyperOS 长按电源键 → ChatGPT 语音（LSPosed 模块）
+# hyperGPT：HyperOS 长按电源键 → ChatGPT 语音（LSPosed 模块）
+
+[![Release](https://img.shields.io/github/v/release/ziyuw-Plank/hyperGPT)](https://github.com/ziyuw-Plank/hyperGPT/releases/latest)
+
+**下载：** [最新 Release](https://github.com/ziyuw-Plank/hyperGPT/releases/latest)
+
+> English: an LSPosed module for Xiaomi HyperOS that makes a long press of the power key open ChatGPT Voice instead of Xiao Ai. It runs only in System Framework, modifies no partitions, and still shows the power menu when you hold the key for about 3 seconds.
 
 把 HyperOS「长按电源键唤醒小爱同学」换成打开 **ChatGPT 语音助手**
 （`com.openai.chatgpt/com.openai.voice.assistant.AssistantActivity`）。
@@ -8,14 +14,14 @@
 - 只替换「启动小爱」这一个动作。**按键事件、长按时长、关机菜单逻辑一律不碰**，长按约 3 秒仍然弹出关机菜单。
 - 任何一步失败（ChatGPT 未安装、组件不存在、启动异常、Hook 点找不到）都会**自动回退到原版小爱**，不会让电源键失灵。
 
-> ⚠️ 诚实说明：代码已在 HyperOS 1.0 / 2.0 / 3.0 官方 ROM 的 `miui-services.jar` 反编译结果上逐项核对（见「原理」），
-> 并已成功编译；但**没有在真机上运行过**。请先按「验证」一节确认日志。
+> 代码已在 HyperOS 1.0 / 2.0 / 3.0 官方 ROM 的 `miui-services.jar` 反编译结果上逐项核对（见「原理」），并已在真机上测试可用。
+> 不同机型 / 小版本可能有差异，装好后建议按「验证」一节看一下日志。
 
 ---
 
 ## 1. 安装
 
-1. 安装 `out/hyperos-power-gpt-1.0.0.apk`（自签名；直接点开安装或 `adb install`）。
+1. 从 [Releases](https://github.com/ziyuw-Plank/hyperGPT/releases/latest) 下载 APK 安装（自签名；直接点开安装或 `adb install`）。
 2. 打开 LSPosed 管理器 → 模块 → 启用 **「HyperOS 电源键 → ChatGPT」**。
 3. 作用域 **只勾选「系统框架 / System Framework」**（模块已声明推荐作用域，启用时会自动勾上）。
    **不要**勾选小爱、ChatGPT、设置或其它任何 App——本模块不需要，而且即使勾了，代码也会立即返回不做任何事。
